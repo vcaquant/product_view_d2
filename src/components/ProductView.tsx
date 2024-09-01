@@ -1,8 +1,8 @@
 "use client";
 
+import { Heart, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import { Heart, ShoppingCart } from "lucide-react";
 
 export type ProductViewProps = {
   images: string[];
@@ -26,7 +26,7 @@ export const ProductView = (props: ProductViewProps) => {
 
   return (
     <div className="flex gap-20">
-      <div className="flex gap-4 items-center relative">
+      <div className="relative flex items-center gap-4">
         <div className="flex flex-col gap-4">
           {props.images.map((image, index) => (
             <Image
@@ -50,19 +50,19 @@ export const ProductView = (props: ProductViewProps) => {
           className="cursor-pointer rounded-md"
         />
         {props.new && (
-          <div className="absolute top-2 -right-3 bg-primary text-primary-foreground px-2 rounded-md font-semibold">
+          <div className="absolute -right-3 top-2 rounded-md bg-primary px-2 font-semibold text-primary-foreground">
             NEW
           </div>
         )}
       </div>
-      <div className="flex flex-1 flex-col gap-6 mt-4">
+      <div className="mt-4 flex flex-1 flex-col gap-6">
         <div>
-          <span className="font-bold text-sm">{props.company}</span>
+          <span className="text-sm font-bold">{props.company}</span>
           <h1 className="text-2xl font-bold">{props.title}</h1>
         </div>
         <p className="text-lg font-bold">{props.price}€</p>
         <div>
-          <p className="text-lg font-semibold mb-1">SIZE</p>
+          <p className="mb-1 text-lg font-semibold">SIZE</p>
           <div className="flex flex-wrap gap-3">
             {props.sizes.map((size, index) => (
               <button
@@ -73,9 +73,9 @@ export const ProductView = (props: ProductViewProps) => {
                     ? "bg-white "
                     : size.available && selectedSize === size.size
                     ? "bg-primary text-primary-foreground "
-                    : "bg-gray-300 text-gray-500 cursor-default "
+                    : "cursor-default bg-gray-300 text-gray-500 "
                 } 
-                w-12 h-12 p-2 border-2 rounded-md text-center font-semibold text-sm`}
+                size-12 rounded-md border-2 p-2 text-center text-sm font-semibold`}
               >
                 {size.size}
               </button>
@@ -85,13 +85,13 @@ export const ProductView = (props: ProductViewProps) => {
         <div className="flex gap-4">
           <button
             onClick={() => setIsFavorite(!isFavorite)}
-            className={`transition-all border-2 bg-white text-secondary-foreground p-3 rounded-full font-semibold ${
+            className={`rounded-full border-2 bg-white p-3 font-semibold text-secondary-foreground transition-all ${
               isFavorite ? "border-primary text-primary" : "border-white"
             }`}
           >
             <Heart fill={isFavorite ? "primary" : "white"} />
           </button>
-          <button className="cart-button relative bg-primary text-primary-foreground p-3 rounded-full font-semibold flex gap-2 w-full justify-center hover:bg-primary/90">
+          <button className="cart-button relative flex w-full justify-center gap-2 rounded-full bg-primary p-3 font-semibold text-primary-foreground hover:bg-primary/90">
             <ShoppingCart className="cart-animation" />
             <span>ADD TO CART</span>
           </button>

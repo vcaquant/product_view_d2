@@ -1,11 +1,15 @@
 {
+  "parser": "@typescript-eslint/parser",
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
     "plugin:react/recommended",
-    "next/core-web-vitals",
-    "plugin:@tailwindcss/recommended",
-    "prettier"
+    "plugin:tailwindcss/recommended",
+    "prettier",
+    "next/core-web-vitals"
   ],
   "ignorePatterns": [
     "dist",
@@ -14,8 +18,29 @@
     "postcss.config.js",
     "next.config.js"
   ],
-  "plugins": ["@tailwindcss"],
+  "plugins": ["@typescript-eslint", "import"],
   "rules": {
+    "import/newline-after-import": ["error", { "count": 1 }],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          ["builtin", "external"],
+          "internal",
+          ["parent", "sibling", "index"]
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
     "react/no-unescaped-entities": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
   }
 }

@@ -3,8 +3,8 @@ import { ProductView } from "@/components/ProductView";
 
 export default function Home() {
   return (
-    <div className="h-full flex flex-col">
-      <Layout className="h-full mt-4 items-center justify-center">
+    <div className="flex h-full flex-col">
+      <Layout className="mt-4 h-full items-center justify-center">
         <ProductView
           images={[
             "/shoes_1.png",
